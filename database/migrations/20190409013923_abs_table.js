@@ -2,7 +2,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable("AbsWod", absWodtbl => {
     absWodtbl.increments();
 
-    absWodtbl.text("Workout Structure").notNullable();
+    absWodtbl.text("Workout_Structure").notNullable();
     absWodtbl.text("Workout").notNullable();
     absWodtbl
       .integer("crossfit_id")
