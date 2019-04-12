@@ -33,7 +33,7 @@ crossfitRouter.get("/:id", (req, res) => {
 
 crossfitRouter.post("/", async (req, res) => {
   const { Workout_Name, Warmup, Workout_Structure, Workout } = req.body;
-  if (!Workout_Name && !Warmup && !Workout_Structure && !Workout) {
+  if (!Workout_Name || !Warmup || !Workout_Structure || !Workout) {
     res
       .status(400)
       .json({ message: `Bad request, submit all required fields` });
@@ -80,11 +80,9 @@ crossfitRouter.put("/:id", (req, res) => {
       }
     })
     .catch(error => {
-      res
-        .status(500)
-        .json({
-          message: `Error occurred while updating Crossfit workout: ${error}`
-        });
+      res.status(500).json({
+        message: `Error occurred while updating Crossfit workout: ${error}`
+      });
     });
 });
 
