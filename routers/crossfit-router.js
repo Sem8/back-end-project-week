@@ -25,11 +25,9 @@ crossfitRouter.get("/:id", (req, res) => {
       res.status(200).json(crossfitWod);
     })
     .catch(error => {
-      res
-        .status(500)
-        .json({
-          message: `Error occurred while retrieving crossfit workout: ${error}`
-        });
+      res.status(500).json({
+        message: `Error occurred while retrieving crossfit workout: ${error}`
+      });
     });
 });
 
@@ -68,6 +66,26 @@ crossfitRouter.delete("/:id", async (req, res) => {
       error: `Error occurred while deleting this crossfit workout: ${error}`
     });
   }
+});
+
+crossfitRouter.put("/:id", (req, res) => {
+  crossfitdb("crossfitwod")
+    .where({ id: req.params.id })
+    .update(req.body)
+    .then(count => {
+      if (count > 0) {
+        res.status(200).json(req.body);
+      } else {
+        res.status(404).json({ message: "Crossfit workout does not exist" });
+      }
+    })
+    .catch(error => {
+      res
+        .status(500)
+        .json({
+          message: `Error occurred while updating Crossfit workout: ${error}`
+        });
+    });
 });
 
 module.exports = crossfitRouter;
