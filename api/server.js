@@ -1,10 +1,14 @@
 const express = require("express");
+const helmet = require("helmet");
 
 const crossfitRouter = require("../routers/crossfit-router.js");
 const absRouter = require("../routers/abs-router.js");
 const authRouter = require('../routers/auth-router.js');
 
 const server = express();
+
+server.use(express.json());
+server.use(helmet());
 
 server.get("/", (req, res) => {
   res.send(
