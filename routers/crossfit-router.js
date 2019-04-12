@@ -57,7 +57,7 @@ crossfitRouter.delete("/:id", async (req, res) => {
   try {
     const count = await crossfitdb("crossfitwod")
       .where({ id: req.params.id })
-      .debug();
+      .del();
     if (count > 0) {
       res.status(204).end();
     } else {
