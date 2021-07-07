@@ -4,9 +4,9 @@ exports.up = function(knex, Promise) {
         crossfitTbl.increments();
 
         crossfitTbl.date('Date');
-        crossfitTbl.string('Workout Name').notNullable();
+        crossfitTbl.string('Workout_Name').notNullable();
         crossfitTbl.text('Warmup').notNullable();
-        crossfitTbl.text('Workout Structure').notNullable();
+        crossfitTbl.text('Workout_Structure').notNullable();
         crossfitTbl.text('Workout').notNullable();
     });
   
